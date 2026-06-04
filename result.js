@@ -236,6 +236,15 @@ window.location.href =
 }
 function certificate(){
 
+if(percentage < 75){
+
+alert(
+"Certificate available only for scores 75% and above"
+);
+
+return;
+}
+
 window.location.href =
 "certificate.html";
 }
