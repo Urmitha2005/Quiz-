@@ -4,9 +4,10 @@ function goToCategories() {
 
     let name = document.getElementById("playerName").value;
 
-    if (name.trim() === "") {
-        alert("Enter your name");
-        return;
+    if(name.trim().length < 3){
+        alert(
+"Please enter a valid name"
+);
     }
 
     localStorage.setItem("playerName", name);
