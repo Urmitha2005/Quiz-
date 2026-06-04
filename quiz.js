@@ -1,24 +1,18 @@
 let quizzes =
-JSON.parse(
-localStorage.getItem(
-"quizzes"
-)
-) || [];
+JSON.parse(localStorage.getItem("quizzes")) || [];
 
 let quizIndex =
-localStorage.getItem(
-"selectedQuiz"
-);
+localStorage.getItem("selectedQuiz");
 
 let quiz =
 quizzes[quizIndex];
 
-if(!quiz){
+if (!quiz) {
 
-alert("Quiz not found");
+    alert("Quiz not found");
 
-window.location.href =
-"category.html";
+    window.location.href =
+    "category.html";
 }
 
 let questions =
@@ -32,9 +26,11 @@ let selectedAnswer = "";
 
 let userAnswers = [];
 
-let timer = 30;
+let defaultTimer =
+parseInt(quiz.timer) || 30;
 
-let defaultTimer = 30;
+let timer =
+defaultTimer;
 
 let timerInterval;
 
@@ -47,205 +43,221 @@ loadQuestion();
 
 startTimer();
 
-function loadQuestion(){
+function loadQuestion() {
 
-let q =
-questions[currentQuestion];
+    let q =
+    questions[currentQuestion];
 
-document.getElementById(
-"question"
-).innerText =
-q.question;
+    document.getElementById(
+    "question"
+    ).innerText =
+    q.question;
 
-document.getElementById(
-"questionNumber"
-).innerText =
-"Question " +
-(currentQuestion + 1) +
-" of " +
-questions.length;
+    document.getElementById(
+    "questionNumber"
+    ).innerText =
+    "Question " +
+    (currentQuestion + 1) +
+    " of " +
+    questions.length;
 
-let progress =
-(
-(currentQuestion + 1)
-/
-questions.length
-) * 100;
+    let progress =
+    ((currentQuestion + 1) /
+    questions.length) * 100;
 
-document.getElementById(
-"progressFill"
-).style.width =
-progress + "%";
+    document.getElementById(
+    "progressFill"
+    ).style.width =
+    progress + "%";
 
-let html = "";
+    document.getElementById(
+    "timer"
+    ).innerText =
+    timer;
 
-q.options.forEach(option=>{
+    let html = "";
 
-html += `
-<div
-class="option"
-onclick="selectOption(this,'${option}')">
+    q.options.forEach(option => {
 
-${option}
+        html += `
+        <div
+        class="option"
+        onclick="selectOption(this,'${option}')">
 
-</div>
-`;
+        ${option}
 
-});
+        </div>
+        `;
 
-document.getElementById(
-"options"
-).innerHTML =
-html;
+    });
+
+    document.getElementById(
+    "options"
+    ).innerHTML =
+    html;
 }
 
 function selectOption(
 element,
 option
-){
+) {
 
-document
-.querySelectorAll(
-".option"
-)
-.forEach(opt=>{
+    document
+    .querySelectorAll(".option")
+    .forEach(opt => {
 
-opt.classList.remove(
-"selected"
-);
+        opt.classList.remove(
+        "selected"
+        );
 
-});
+    });
 
-element.classList.add(
-"selected"
-);
+    element.classList.add(
+    "selected"
+    );
 
-selectedAnswer =
-option;
+    selectedAnswer =
+    option;
 }
 
-function nextQuestion(){
+function nextQuestion() {
 
-if(selectedAnswer===""){
+    if (selectedAnswer === "") {
 
-alert(
-"Select an answer"
-);
+        alert(
+        "Select an answer"
+        );
 
-return;
+        return;
+    }
+
+    saveAnswer();
+
+    currentQuestion++;
+
+    if (
+    currentQuestion >=
+    questions.length
+    ) {
+
+        finishQuiz();
+
+        return;
+    }
+
+    selectedAnswer = "";
+
+    timer =
+    defaultTimer;
+
+    clearInterval(
+    timerInterval
+    );
+
+    loadQuestion();
+
+    startTimer();
 }
 
-userAnswers.push({
+function saveAnswer() {
 
-question:
-questions[currentQuestion]
-.question,
+    userAnswers.push({
 
-selected:
-selectedAnswer,
+        question:
+        questions[currentQuestion]
+        .question,
 
-correct:
-questions[currentQuestion]
-.answer
+        selected:
+        selectedAnswer,
 
-});
+        correct:
+        questions[currentQuestion]
+        .answer
 
-if(
-selectedAnswer ===
-questions[currentQuestion]
-.answer
-){
+    });
 
-score++;
+    if (
+    selectedAnswer ===
+    questions[currentQuestion]
+    .answer
+    ) {
+
+        score++;
+    }
 }
 
-currentQuestion++;
+function startTimer() {
 
-selectedAnswer="";
+    clearInterval(
+    timerInterval
+    );
 
-timer=30;
+    timerInterval =
+    setInterval(() => {
 
-if(
-currentQuestion >=
-questions.length
-){
+        timer--;
 
-finishQuiz();
+        document.getElementById(
+        "timer"
+        ).innerText =
+        timer;
 
-return;
+        if (timer <= 0) {
+
+            userAnswers.push({
+
+                question:
+                questions[currentQuestion]
+                .question,
+
+                selected:
+                "No Answer",
+
+                correct:
+                questions[currentQuestion]
+                .answer
+
+            });
+
+            currentQuestion++;
+
+            if (
+            currentQuestion >=
+            questions.length
+            ) {
+
+                finishQuiz();
+
+                return;
+            }
+
+            timer =
+            defaultTimer;
+
+            loadQuestion();
+        }
+
+    }, 1000);
 }
 
-loadQuestion();
-}
+function finishQuiz() {
 
-function startTimer(){
+    clearInterval(
+    timerInterval
+    );
 
-timerInterval =
-setInterval(()=>{
+    localStorage.setItem(
+    "score",
+    score
+    );
 
-timer--;
+    localStorage.setItem(
+    "userAnswers",
+    JSON.stringify(
+    userAnswers
+    )
+    );
 
-document.getElementById(
-"timer"
-).innerText =
-timer;
-
-if(timer<=0){
-
-userAnswers.push({
-
-question:
-questions[currentQuestion]
-.question,
-
-selected:
-"No Answer",
-
-correct:
-questions[currentQuestion]
-.answer
-
-});
-
-currentQuestion++;
-
-timer=30;
-
-if(
-currentQuestion >=
-questions.length
-){
-
-finishQuiz();
-
-return;
-}
-
-loadQuestion();
-}
-
-},1000);
-
-}
-
-function finishQuiz(){
-
-clearInterval(
-timerInterval
-);
-
-localStorage.setItem(
-"score",
-score
-);
-
-localStorage.setItem(
-"userAnswers",
-JSON.stringify(
-userAnswers
-)
-);
-
-window.location.href =
-"result.html";
+    window.location.href =
+    "result.html";
 }
