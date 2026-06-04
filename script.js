@@ -1,128 +1,98 @@
 loadDashboard();
 
-function goToCategories(){
+function goToCategories() {
 
-let name =
-document.getElementById(
-"playerName"
-).value;
+    let name = document.getElementById("playerName").value;
 
-if(name.trim()===""){
+    if (name.trim() === "") {
+        alert("Enter your name");
+        return;
+    }
 
-alert(
-"Enter your name"
-);
+    localStorage.setItem("playerName", name);
 
-return;
+    window.location.href = "category.html";
 }
 
-localStorage.setItem(
-"playerName",
-name
-);
-
-window.location.href =
-"category.html";
-}
-function goToProfile(){
-
-window.location.href =
-"profile.html";
-}
-function goToAdmin(){
-
-window.location.href =
-"login.html";
+function goToProfile() {
+    window.location.href = "profile.html";
 }
 
-function loadDashboard(){
-
-let quizzes =
-JSON.parse(
-localStorage.getItem(
-"quizzes"
-)
-) || [];
-
-let leaderboard =
-JSON.parse(
-localStorage.getItem(
-"leaderboard"
-)
-) || [];
-
-document.getElementById(
-"totalQuizzes"
-).innerText =
-quizzes.length;
-
-let totalQuestions = 0;
-
-quizzes.forEach(q=>{
-
-totalQuestions +=
-q.questions.length;
-
-});
-
-document.getElementById(
-"totalQuestions"
-).innerText =
-totalQuestions;
-
-let highest = 0;
-
-leaderboard.forEach(player=>{
-
-if(player.score > highest){
-
-highest =
-player.score;
+function goToAdmin() {
+    window.location.href = "login.html";
 }
 
-});
+function loadDashboard() {
 
-document.getElementById(
-"highestScore"
-).innerText =
-highest;
+    let quizzes =
+        JSON.parse(localStorage.getItem("quizzes")) || [];
 
-let recent =
-document.getElementById(
-"recentQuizzes"
-);
+    let leaderboard =
+        JSON.parse(localStorage.getItem("leaderboard")) || [];
 
-quizzes.slice(-3)
-.reverse()
-.forEach(quiz=>{
+    document.getElementById("totalQuizzes").innerText =
+        quizzes.length;
 
-recent.innerHTML += `
+    let totalQuestions = 0;
 
-<div class="quiz-card">
+    quizzes.forEach(q => {
+        totalQuestions += q.questions.length;
+    });
 
-<h3>
+    document.getElementById("totalQuestions").innerText =
+        totalQuestions;
 
-${quiz.category}
+    let highest = 0;
 
-</h3>
+    leaderboard.forEach(player => {
 
-<p>
+        if (player.score > highest) {
+            highest = player.score;
+        }
 
-${quiz.description}
+    });
 
-</p>
+    document.getElementById("highestScore").innerText =
+        highest;
 
-<p>
+    let recent =
+        document.getElementById("recentQuizzes");
 
-Difficulty:
-${quiz.difficulty}
+    // Clear old cards before adding new ones
+    recent.innerHTML = "";
 
-</p>
+    if (quizzes.length === 0) {
 
-</div>
+        recent.innerHTML = `
+        <div class="quiz-card">
+            <h3>No Quizzes Available</h3>
+            <p>Create a quiz to get started.</p>
+        </div>
+        `;
 
-`;
+        return;
+    }
 
-});
+    quizzes
+        .slice(-3)
+        .reverse()
+        .forEach(quiz => {
+
+            recent.innerHTML += `
+            <div class="quiz-card">
+
+                <h3>${quiz.category}</h3>
+
+                <p>${quiz.description}</p>
+
+                <p>
+                    Difficulty:
+                    ${quiz.difficulty}
+                </p>
+
+            </div>
+            `;
+
+        });
 
 }
