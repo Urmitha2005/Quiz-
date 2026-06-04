@@ -1,0 +1,184 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    background:linear-gradient(135deg,#6a11cb,#2575fc);
+    min-height:100vh;
+    padding:30px;
+}
+
+.container{
+    max-width:1400px;
+    margin:auto;
+}
+
+.result-card{
+    background:white;
+    border-radius:25px;
+    overflow:hidden;
+    box-shadow:0 15px 40px rgba(0,0,0,0.2);
+}
+
+.result-card h1{
+    background:linear-gradient(90deg,#7b2ff7,#2575fc);
+    color:white;
+    padding:30px;
+    font-size:45px;
+}
+
+#playerName{
+    padding:25px 30px;
+    color:#333;
+    font-size:32px;
+}
+
+.analytics{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:20px;
+    padding:20px 30px;
+}
+
+.box{
+    padding:30px;
+    border-radius:20px;
+    text-align:center;
+    font-size:22px;
+    font-weight:600;
+    box-shadow:0 5px 15px rgba(0,0,0,0.1);
+}
+
+.box:nth-child(1){
+    background:#e8f1ff;
+    color:#2563eb;
+}
+
+.box:nth-child(2){
+    background:#e8fff0;
+    color:#16a34a;
+}
+
+.box:nth-child(3){
+    background:#ecfccb;
+    color:#65a30d;
+}
+
+.box:nth-child(4){
+    background:#fee2e2;
+    color:#dc2626;
+}
+
+.box:nth-child(5){
+    background:#f3e8ff;
+    color:#9333ea;
+}
+
+.review-heading{
+    margin:30px;
+    font-size:30px;
+    color:#333;
+}
+
+#reviewContainer{
+    padding:0 30px 20px;
+}
+
+.review-card{
+    background:white;
+    border-radius:15px;
+    padding:25px;
+    margin-bottom:20px;
+    border-left:8px solid #2563eb;
+    box-shadow:0 5px 15px rgba(0,0,0,0.08);
+}
+
+.review-card h3{
+    font-size:24px;
+    margin-bottom:15px;
+    color:#111827;
+}
+
+.review-card p{
+    font-size:18px;
+    margin:10px 0;
+}
+
+.correct{
+    color:#16a34a;
+    font-weight:700;
+}
+
+.wrong{
+    color:#dc2626;
+    font-weight:700;
+}
+
+.buttons{
+    display:flex;
+    flex-wrap:wrap;
+    gap:15px;
+    justify-content:center;
+    padding:30px;
+}
+
+.buttons button{
+    padding:15px 25px;
+    border:none;
+    border-radius:12px;
+    color:white;
+    cursor:pointer;
+    font-size:16px;
+    font-weight:600;
+    transition:.3s;
+}
+
+.buttons button:nth-child(1){
+    background:#7c3aed;
+}
+
+.buttons button:nth-child(2){
+    background:#2563eb;
+}
+
+.buttons button:nth-child(3){
+    background:#f59e0b;
+}
+
+.buttons button:nth-child(4){
+    background:#16a34a;
+}
+
+.buttons button:nth-child(5){
+    background:#ec4899;
+}
+
+.buttons button:hover{
+    transform:translateY(-5px);
+}
+
+@media(max-width:768px){
+
+    .result-card h1{
+        font-size:32px;
+    }
+
+    #playerName{
+        font-size:24px;
+    }
+
+    .analytics{
+        grid-template-columns:1fr;
+    }
+
+    .buttons{
+        flex-direction:column;
+    }
+
+    .buttons button{
+        width:100%;
+    }
+}

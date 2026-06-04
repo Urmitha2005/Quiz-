@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>Quiz Result</title>
+
+<link rel="stylesheet"
+href="result.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+rel="stylesheet">
+
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="result-card">
+
+<h1>
+🎉 Quiz Completed
+</h1>
+
+<h2 id="playerName"></h2>
+
+<div class="analytics">
+
+<div class="box">
+<h3 id="score"></h3>
+</div>
+
+<div class="box">
+<h3 id="percentage"></h3>
+</div>
+
+<div class="box">
+<h3 id="correctCount"></h3>
+</div>
+
+<div class="box">
+<h3 id="wrongCount"></h3>
+</div>
+
+<div class="box">
+<h3 id="performance"></h3>
+</div>
+
+</div>
+
+<h2 class="review-heading">
+
+Answer Review
+
+</h2>
+
+<div id="reviewContainer">
+
+</div>
+
+<div class="buttons">
+
+<button onclick="playAgain()">
+
+Take Another Quiz
+
+</button>
+
+<button onclick="leaderboard()">
+
+Leaderboard
+
+</button>
+
+<button onclick="historyPage()">
+
+Attempt History
+
+</button>
+
+<button onclick="certificate()">
+
+Certificate
+
+</button>
+
+<button onclick="home()">
+
+Home
+
+</button>
+
+
+
+</div>
+
+</div>
+
+</div>
+
+<script src="result.js"></script>
+
+</body>
+
+</html>

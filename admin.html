@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Quiz Admin</title>
+
+<link rel="stylesheet" href="admin.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+rel="stylesheet">
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>Create New Quiz</h1>
+
+<input
+type="text"
+id="category"
+placeholder="Category Name">
+
+<input
+type="text"
+id="description"
+placeholder="Quiz Description">
+
+<select id="difficulty">
+
+<option value="">
+Select Difficulty
+</option>
+
+<option>Easy</option>
+
+<option>Medium</option>
+
+<option>Hard</option>
+
+</select>
+
+<input
+type="number"
+id="timer"
+placeholder="Time Per Question (Seconds)">
+
+<hr>
+
+<h2>Add Question</h2>
+
+<input
+type="text"
+id="question"
+placeholder="Question">
+
+<input
+type="text"
+id="option1"
+placeholder="Option 1">
+
+<input
+type="text"
+id="option2"
+placeholder="Option 2">
+
+<input
+type="text"
+id="option3"
+placeholder="Option 3">
+
+<input
+type="text"
+id="option4"
+placeholder="Option 4">
+
+<select id="answer">
+
+<option value="">
+Correct Answer
+</option>
+
+<option value="1">
+Option 1
+</option>
+
+<option value="2">
+Option 2
+</option>
+
+<option value="3">
+Option 3
+</option>
+
+<option value="4">
+Option 4
+</option>
+
+</select>
+
+<button onclick="addQuestion()">
+
+➕ Add Question
+
+</button>
+
+<p>
+
+Questions Added:
+<span id="count">0</span>
+
+</p>
+
+<button onclick="saveQuiz()">
+
+💾 Save Quiz
+
+</button>
+
+<hr>
+
+<h2>Existing Quizzes</h2>
+
+<div id="quizList">
+
+</div>
+
+</div>
+
+<script src="admin.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>Quiz</title>
+
+<link rel="stylesheet"
+href="quiz.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+rel="stylesheet">
+
+</head>
+
+<body>
+
+<div class="quiz-container">
+
+<div class="top-bar">
+
+<h2 id="categoryName">
+Quiz
+</h2>
+
+<div class="timer">
+
+⏱️
+<span id="timer">
+30
+</span>
+
+</div>
+
+</div>
+
+<div class="progress">
+
+<span id="questionNumber">
+
+Question 1
+
+</span>
+
+<div class="progress-bar">
+
+<div
+class="progress-fill"
+id="progressFill">
+
+</div>
+
+</div>
+
+</div>
+
+<div class="question-box">
+
+<h1 id="question">
+
+Loading...
+
+</h1>
+
+<div id="options">
+
+</div>
+
+</div>
+
+<button
+id="nextBtn"
+onclick="nextQuestion()">
+
+Next Question →
+
+</button>
+
+</div>
+
+<script src="quiz.js"></script>
+
+</body>
+
+</html>

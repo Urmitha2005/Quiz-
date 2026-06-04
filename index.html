@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>Quiz Master</title>
+
+<link rel="stylesheet"
+href="style.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+rel="stylesheet">
+
+</head>
+
+<body>
+
+<nav>
+
+<div class="logo">
+
+QUIZ MASTER
+
+</div>
+
+<ul>
+
+<li>
+<a href="index.html">
+Home
+</a>
+</li>
+
+<li>
+<a href="leaderboard.html">
+Leaderboard
+</a>
+</li>
+
+</ul>
+
+</nav>
+
+<section class="hero">
+
+<div class="hero-card">
+
+<h1>
+Quiz Creator Platform
+</h1>
+
+<p>
+
+Create quizzes, test students,
+track scores and improve learning.
+
+</p>
+
+<input
+type="text"
+id="playerName"
+placeholder="Enter Your Name">
+
+<div class="buttons">
+
+<button
+onclick="goToCategories()">
+
+Take Quiz
+
+</button>
+
+<button
+class="secondary"
+onclick="goToAdmin()">
+
+➕ Create Quiz
+
+</button>
+
+Create Quiz
+
+</button>
+
+</div>
+
+</div>
+
+</section>
+
+<section class="stats">
+
+<div class="stat-card">
+
+<h2 id="totalQuizzes">
+0
+</h2>
+
+<p>
+Total Quizzes
+</p>
+
+</div>
+
+<div class="stat-card">
+
+<h2 id="totalQuestions">
+0
+</h2>
+
+<p>
+Total Questions
+</p>
+
+</div>
+
+<div class="stat-card">
+
+<h2 id="highestScore">
+0
+</h2>
+
+<p>
+Highest Score
+</p>
+
+</div>
+
+</section>
+
+<section class="recent">
+
+<h2>
+Recent Quizzes
+</h2>
+<section class="features">
+
+<h2>
+Why Students Love Quiz Master 🚀
+</h2>
+
+<div class="feature-grid">
+
+<div class="feature">
+🎯
+<h3>Smart Quizzes</h3>
+<p>Create unlimited quizzes instantly.</p>
+</div>
+
+<div class="feature">
+📊
+<h3>Performance Analytics</h3>
+<p>Track scores and accuracy.</p>
+</div>
+
+<div class="feature">
+🏆
+<h3>Leaderboard</h3>
+<p>Compete with classmates.</p>
+</div>
+
+<div class="feature">
+📜
+<h3>Certificates</h3>
+<p>Earn certificates after completion.</p>
+</div>
+
+</div>
+
+</section>
+<div id="recentQuizzes">
+
+</div>
+
+</section>
+
+<script src="script.js"></script>
+
+</body>
+
+</html>
